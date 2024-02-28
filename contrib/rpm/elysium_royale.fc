@@ -1,0 +1,8 @@
+/usr/bin/elysium_royale-cli		--	gen_context(system_u:object_r:elysium_royale_exec_t,s0)
+/usr/sbin/elysium_royaled		--	gen_context(system_u:object_r:elysium_royale_exec_t,s0)
+/usr/lib(64)?/elysium_royale/elysium_royaled		--	gen_context(system_u:object_r:elysium_royale_exec_t,s0)
+
+/etc/elysium_royale(/.*)?		gen_context(system_u:object_r:elysium_royale_conf_t,s0)
+/var/lib/elysium_royale(/.*)?		gen_context(system_u:object_r:elysium_royale_var_lib_t,s0)
+
+(/var)?/run/elysium_royaled(/.*)?   gen_context(system_u:object_r:elysium_royale_var_run_t,s0)

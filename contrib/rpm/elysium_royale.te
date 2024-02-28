@@ -1,0 +1,81 @@
+policy_module(elysium_royale, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type elysium_royale_t;
+type elysium_royale_exec_t;
+init_daemon_domain(elysium_royale_t, elysium_royale_exec_t)
+
+permissive elysium_royale_t;
+
+type elysium_royale_initrc_exec_t;
+init_script_file(elysium_royale_initrc_exec_t)
+
+type elysium_royale_conf_t;
+files_type(elysium_royale_conf_t)
+
+type elysium_royale_var_lib_t;
+files_type(elysium_royale_var_lib_t)
+
+type elysium_royale_var_run_t;
+files_type(elysium_royale_var_run_t)
+
+type elysium_royale_port_t;
+corenet_port(elysium_royale_port_t)
+
+########################################
+#
+# elysium_royale local policy
+#
+allow elysium_royale_t self:process { fork };
+
+allow elysium_royale_t self:fifo_file rw_fifo_file_perms;
+allow elysium_royale_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(elysium_royale_t, elysium_royale_conf_t, elysium_royale_conf_t)
+manage_files_pattern(elysium_royale_t, elysium_royale_conf_t, elysium_royale_conf_t)
+
+manage_dirs_pattern(elysium_royale_t, elysium_royale_var_lib_t, elysium_royale_var_lib_t)
+manage_files_pattern(elysium_royale_t, elysium_royale_var_lib_t, elysium_royale_var_lib_t)
+files_var_lib_filetrans(elysium_royale_t, elysium_royale_var_lib_t, { dir file })
+
+manage_dirs_pattern(elysium_royale_t, elysium_royale_var_run_t, elysium_royale_var_run_t)
+manage_files_pattern(elysium_royale_t, elysium_royale_var_run_t, elysium_royale_var_run_t)
+
+sysnet_dns_name_resolve(elysium_royale_t)
+corenet_all_recvfrom_unlabeled(elysium_royale_t)
+
+allow elysium_royale_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(elysium_royale_t)
+corenet_tcp_sendrecv_generic_node(elysium_royale_t)
+corenet_tcp_sendrecv_all_ports(elysium_royale_t)
+corenet_tcp_bind_generic_node(elysium_royale_t)
+
+gen_require(`
+    type elysium_royale_port_t;
+')
+allow elysium_royale_t elysium_royale_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type elysium_royale_port_t;
+')
+allow elysium_royale_t elysium_royale_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(elysium_royale_t)
+
+files_read_etc_files(elysium_royale_t)
+
+miscfiles_read_localization(elysium_royale_t)
+
+sysnet_dns_name_resolve(elysium_royale_t)
+
+allow elysium_royale_t elysium_royale_exec_t:file execute_no_trans;
+allow elysium_royale_t self:process setsched;
+corecmd_exec_ls(elysium_royale_t)
+corenet_tcp_connect_http_port(elysium_royale_t)
+dev_read_urand(elysium_royale_t)
+fs_getattr_xattr_fs(elysium_royale_t)
+kernel_read_system_state(elysium_royale_t)

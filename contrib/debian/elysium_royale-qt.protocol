@@ -1,0 +1,11 @@
+[Protocol]
+exec=elysium_royale-qt '%u'
+protocol=elysium_royale
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

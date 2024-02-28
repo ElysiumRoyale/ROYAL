@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Elysium_Royale Core
+Comment=Elysium_Royale P2P Cryptocurrency
+Comment[fr]=Elysium_Royale, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Elysium_Royale, eşten eşe kriptografik sanal para birimi
+Exec=elysium_royale-qt %u
+Terminal=false
+Type=Application
+Icon=elysium_royale128
+MimeType=x-scheme-handler/elysium_royale;
+Categories=Office;Finance;
+StartupWMClass=Elysium_Royale-qt

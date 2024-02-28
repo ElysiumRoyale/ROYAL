@@ -1,0 +1,18 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="de">locale/elysium_royale_de.qm</file>
+        <file alias="en">locale/elysium_royale_en.qm</file>
+        <file alias="en_US">locale/elysium_royale_en_US.qm</file>
+        <file alias="es">locale/elysium_royale_es.qm</file>
+        <file alias="es_ES">locale/elysium_royale_es_ES.qm</file>
+        <file alias="fr_FR">locale/elysium_royale_fr_FR.qm</file>
+        <file alias="hr_HR">locale/elysium_royale_hr_HR.qm</file>
+        <file alias="it">locale/elysium_royale_it.qm</file>
+        <file alias="ko_KR">locale/elysium_royale_ko_KR.qm</file>
+        <file alias="nl">locale/elysium_royale_nl.qm</file>
+        <file alias="pl">locale/elysium_royale_pl.qm</file>
+        <file alias="ru">locale/elysium_royale_ru.qm</file>
+        <file alias="tr">locale/elysium_royale_tr.qm</file>
+        <file alias="zh_CN">locale/elysium_royale_zh_CN.qm</file>
+    </qresource>
+</RCC>

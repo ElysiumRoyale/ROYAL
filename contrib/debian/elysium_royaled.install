@@ -1,0 +1,3 @@
+usr/local/bin/elysium_royaled usr/bin
+usr/local/bin/elysium_royale-cli usr/bin
+debian/examples/elysiumroyale.conf etc/elysiumroyale

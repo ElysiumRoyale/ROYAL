@@ -1,0 +1,738 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/elysium_royale-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# elysium_royale qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/elysium_royale/forms/loadingdialog.ui \
+  qt/elysium_royale/forms/snackbar.ui \
+  qt/elysium_royale/forms/navmenuwidget.ui \
+  qt/elysium_royale/forms/lockunlock.ui \
+  qt/elysium_royale/forms/expandablebutton.ui \
+  qt/elysium_royale/forms/receivedialog.ui \
+  qt/elysium_royale/forms/balancebubble.ui \
+  qt/elysium_royale/forms/topbar.ui \
+  qt/elysium_royale/forms/txrow.ui \
+  qt/elysium_royale/forms/dashboardwidget.ui \
+  qt/elysium_royale/forms/addresslabelrow.ui \
+  qt/elysium_royale/forms/contactdropdownrow.ui \
+  qt/elysium_royale/forms/mninfodialog.ui \
+  qt/elysium_royale/forms/optionbutton.ui \
+  qt/elysium_royale/forms/masternodewizarddialog.ui \
+  qt/elysium_royale/forms/mnrow.ui \
+  qt/elysium_royale/forms/masternodeswidget.ui \
+  qt/elysium_royale/forms/myaddressrow.ui \
+  qt/elysium_royale/forms/csrow.ui \
+  qt/elysium_royale/forms/sendmemodialog.ui \
+  qt/elysium_royale/forms/sendchangeaddressdialog.ui \
+  qt/elysium_royale/forms/sendconfirmdialog.ui \
+  qt/elysium_royale/forms/sendcustomfeedialog.ui \
+  qt/elysium_royale/forms/sendmultirow.ui \
+  qt/elysium_royale/forms/send.ui \
+  qt/elysium_royale/forms/addnewcontactdialog.ui \
+  qt/elysium_royale/forms/requestdialog.ui \
+  qt/elysium_royale/forms/receivewidget.ui \
+  qt/elysium_royale/forms/tooltipmenu.ui \
+  qt/elysium_royale/forms/addresseswidget.ui \
+  qt/elysium_royale/forms/defaultdialog.ui \
+  qt/elysium_royale/forms/coldstakingwidget.ui \
+  qt/elysium_royale/forms/proposalcard.ui \
+  qt/elysium_royale/forms/mnselectiondialog.ui \
+  qt/elysium_royale/forms/votedialog.ui \
+  qt/elysium_royale/forms/createproposaldialog.ui \
+  qt/elysium_royale/forms/proposalinfodialog.ui \
+  qt/elysium_royale/forms/governancewidget.ui \
+  qt/elysium_royale/settings/forms/settingsbackupwallet.ui \
+  qt/elysium_royale/settings/forms/settingsexportcsv.ui \
+  qt/elysium_royale/settings/forms/settingsbittoolwidget.ui \
+  qt/elysium_royale/settings/forms/settingsconsolewidget.ui \
+  qt/elysium_royale/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/elysium_royale/settings/forms/settingsfaqwidget.ui \
+  qt/elysium_royale/settings/forms/settingsinformationwidget.ui \
+  qt/elysium_royale/settings/forms/settingsmainoptionswidget.ui \
+  qt/elysium_royale/settings/forms/settingssignmessagewidgets.ui \
+  qt/elysium_royale/settings/forms/settingswalletoptionswidget.ui \
+  qt/elysium_royale/settings/forms/settingswalletrepairwidget.ui \
+  qt/elysium_royale/settings/forms/settingswidget.ui \
+  qt/elysium_royale/forms/welcomecontentwidget.ui \
+  qt/elysium_royale/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/elysium_royale/moc_elysium_royalegui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_rpcexecutor.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/elysium_royale/moc_loadingdialog.cpp \
+  qt/elysium_royale/moc_pwidget.cpp \
+  qt/elysium_royale/moc_focuseddialog.cpp \
+  qt/elysium_royale/moc_snackbar.cpp \
+  qt/elysium_royale/moc_navmenuwidget.cpp \
+  qt/elysium_royale/moc_lockunlock.cpp \
+  qt/elysium_royale/moc_expandablebutton.cpp \
+  qt/elysium_royale/moc_furabstractlistitemdelegate.cpp \
+  qt/elysium_royale/moc_receivedialog.cpp \
+  qt/elysium_royale/moc_pfborderimage.cpp \
+  qt/elysium_royale/moc_topbar.cpp \
+  qt/elysium_royale/moc_txrow.cpp \
+  qt/elysium_royale/moc_dashboardwidget.cpp \
+  qt/elysium_royale/moc_addresslabelrow.cpp \
+  qt/elysium_royale/moc_contactdropdownrow.cpp \
+  qt/elysium_royale/moc_mninfodialog.cpp \
+  qt/elysium_royale/moc_optionbutton.cpp \
+  qt/elysium_royale/moc_coldstakingmodel.cpp \
+  qt/elysium_royale/moc_mnmodel.cpp \
+  qt/elysium_royale/moc_masternodewizarddialog.cpp \
+  qt/elysium_royale/moc_mnrow.cpp \
+  qt/elysium_royale/moc_masternodeswidget.cpp \
+  qt/elysium_royale/moc_myaddressrow.cpp \
+  qt/elysium_royale/moc_csrow.cpp \
+  qt/elysium_royale/moc_contactsdropdown.cpp \
+  qt/elysium_royale/moc_sendchangeaddressdialog.cpp \
+  qt/elysium_royale/moc_sendconfirmdialog.cpp \
+  qt/elysium_royale/moc_sendcustomfeedialog.cpp \
+  qt/elysium_royale/moc_sendmemodialog.cpp \
+  qt/elysium_royale/moc_sendmultirow.cpp \
+  qt/elysium_royale/moc_send.cpp \
+  qt/elysium_royale/moc_addnewcontactdialog.cpp \
+  qt/elysium_royale/moc_requestdialog.cpp \
+  qt/elysium_royale/moc_receivewidget.cpp \
+  qt/elysium_royale/moc_tooltipmenu.cpp \
+  qt/elysium_royale/moc_addresseswidget.cpp \
+  qt/elysium_royale/moc_defaultdialog.cpp \
+  qt/elysium_royale/moc_coldstakingwidget.cpp \
+  qt/elysium_royale/moc_proposalcard.cpp \
+  qt/elysium_royale/moc_mnselectiondialog.cpp \
+  qt/elysium_royale/moc_votedialog.cpp \
+  qt/elysium_royale/moc_createproposaldialog.cpp \
+  qt/elysium_royale/moc_proposalinfodialog.cpp \
+  qt/elysium_royale/moc_governancewidget.cpp \
+  qt/elysium_royale/settings/moc_settingsbackupwallet.cpp \
+  qt/elysium_royale/settings/moc_settingsexportcsv.cpp \
+  qt/elysium_royale/settings/moc_settingsbittoolwidget.cpp \
+  qt/elysium_royale/settings/moc_settingsconsolewidget.cpp \
+  qt/elysium_royale/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/elysium_royale/settings/moc_settingsfaqwidget.cpp \
+  qt/elysium_royale/settings/moc_settingsinformationwidget.cpp \
+  qt/elysium_royale/settings/moc_settingsmainoptionswidget.cpp \
+  qt/elysium_royale/settings/moc_settingssignmessagewidgets.cpp \
+  qt/elysium_royale/settings/moc_settingswalletoptionswidget.cpp \
+  qt/elysium_royale/settings/moc_settingswalletrepairwidget.cpp \
+  qt/elysium_royale/settings/moc_settingswidget.cpp \
+  qt/elysium_royale/moc_welcomecontentwidget.cpp \
+  qt/elysium_royale/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/elysium_royale.moc \
+  qt/intro.moc
+
+QT_QRC_CPP = qt/qrc_elysium_royale.cpp
+QT_QRC = qt/elysium_royale.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_elysium_royale_locale.cpp
+QT_QRC_LOCALE = qt/elysium_royale_locale.qrc
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/elysium_royale/elysium_royalegui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsmodel.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/rpcconsole.h \
+  qt/rpcexecutor.h \
+  qt/trafficgraphwidget.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/elysium_royale/prunnable.h \
+  qt/elysium_royale/pfborderimage.h \
+  qt/elysium_royale/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/elysium_royale/pwidget.h \
+  qt/elysium_royale/focuseddialog.h \
+  qt/elysium_royale/guitransactionsutils.h \
+  qt/elysium_royale/snackbar.h \
+  qt/elysium_royale/navmenuwidget.h \
+  qt/elysium_royale/lockunlock.h \
+  qt/elysium_royale/receivedialog.h \
+  qt/elysium_royale/furlistrow.h \
+  qt/elysium_royale/furabstractlistitemdelegate.h \
+  qt/elysium_royale/txviewholder.h \
+  qt/elysium_royale/qtutils.h \
+  qt/elysium_royale/expandablebutton.h \
+  qt/elysium_royale/balancebubble.h \
+  qt/elysium_royale/topbar.h \
+  qt/elysium_royale/txrow.h \
+  qt/elysium_royale/addressholder.h \
+  qt/elysium_royale/addressfilterproxymodel.h \
+  qt/elysium_royale/dashboardwidget.h \
+  qt/elysium_royale/addresslabelrow.h \
+  qt/elysium_royale/contactdropdownrow.h \
+  qt/elysium_royale/mninfodialog.h \
+  qt/elysium_royale/optionbutton.h \
+  qt/elysium_royale/coldstakingmodel.h \
+  qt/elysium_royale/mnmodel.h \
+  qt/elysium_royale/masternodewizarddialog.h \
+  qt/elysium_royale/mnrow.h \
+  qt/elysium_royale/masternodeswidget.h \
+  qt/elysium_royale/myaddressrow.h \
+  qt/elysium_royale/csrow.h \
+  qt/elysium_royale/contactsdropdown.h \
+  qt/elysium_royale/sendchangeaddressdialog.h \
+  qt/elysium_royale/sendconfirmdialog.h \
+  qt/elysium_royale/sendcustomfeedialog.h \
+  qt/elysium_royale/sendmemodialog.h \
+  qt/elysium_royale/sendmultirow.h \
+  qt/elysium_royale/send.h \
+  qt/elysium_royale/addnewcontactdialog.h \
+  qt/elysium_royale/requestdialog.h \
+  qt/elysium_royale/receivewidget.h \
+  qt/elysium_royale/tooltipmenu.h \
+  qt/elysium_royale/addresseswidget.h \
+  qt/elysium_royale/defaultdialog.h \
+  qt/elysium_royale/coldstakingwidget.h \
+  qt/elysium_royale/governancemodel.h \
+  qt/elysium_royale/proposalcard.h \
+  qt/elysium_royale/mnselectiondialog.h \
+  qt/elysium_royale/votedialog.h \
+  qt/elysium_royale/createproposaldialog.h \
+  qt/elysium_royale/proposalinfodialog.h \
+  qt/elysium_royale/governancewidget.h \
+  qt/elysium_royale/settings/settingsbackupwallet.h \
+  qt/elysium_royale/settings/settingsexportcsv.h \
+  qt/elysium_royale/settings/settingsbittoolwidget.h \
+  qt/elysium_royale/settings/settingsconsolewidget.h \
+  qt/elysium_royale/settings/settingsdisplayoptionswidget.h \
+  qt/elysium_royale/settings/settingsfaqwidget.h \
+  qt/elysium_royale/settings/settingsinformationwidget.h \
+  qt/elysium_royale/settings/settingsmainoptionswidget.h \
+  qt/elysium_royale/settings/settingssignmessagewidgets.h \
+  qt/elysium_royale/settings/settingswalletoptionswidget.h \
+  qt/elysium_royale/settings/settingswalletrepairwidget.h \
+  qt/elysium_royale/settings/settingswidget.h \
+  qt/elysium_royale/welcomecontentwidget.h \
+  qt/elysium_royale/splash.h
+
+RES_ICONS = \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/ic-transaction-received.svg \
+  qt/res/icons/ic-transaction-mint.svg \
+  qt/res/icons/ic-transaction-sent.svg \
+  qt/res/icons/ic-transaction-staked.svg \
+  qt/elysium_royale/res/img/bg-dashboard-banner.png \
+  qt/elysium_royale/res/img/bg-multi-number-dark.svg \
+  qt/elysium_royale/res/img/ic-check-locked.svg \
+  qt/elysium_royale/res/img/ic-nav-address.svg \
+  qt/elysium_royale/res/img/ic-update.svg \
+  qt/elysium_royale/res/img/bg-multi-number.svg \
+  qt/elysium_royale/res/img/ic-check-mint-off.svg \
+  qt/elysium_royale/res/img/ic-nav-cold-staking.svg \
+  qt/elysium_royale/res/img/ic-nav-cold-staking-active.svg \
+  qt/elysium_royale/res/img/ic-nav-dashboard-active.svg \
+  qt/elysium_royale/res/img/ic-wallet-status-locked.svg \
+  qt/elysium_royale/res/img/bg-splash.svg \
+  qt/elysium_royale/res/img/bg-splash.png \
+  qt/elysium_royale/res/img/ic-check-mint.svg \
+  qt/elysium_royale/res/img/ic-nav-dashboard-hover.svg \
+  qt/elysium_royale/res/img/ic-wallet-status-staking.svg \
+  qt/elysium_royale/res/img/ic-check-peers-off.svg \
+  qt/elysium_royale/res/img/ic-nav-dashboard.svg \
+  qt/elysium_royale/res/img/ic-wallet-status-unlocked.svg \
+  qt/elysium_royale/res/img/ic-check-peers.svg \
+  qt/elysium_royale/res/img/ic-nav-master-active.svg \
+  qt/elysium_royale/res/img/ic-watch-password-white.svg \
+  qt/elysium_royale/res/img/bg-welcome-container.jpg \
+  qt/elysium_royale/res/img/bg-welcome-container.png \
+  qt/elysium_royale/res/img/bg-welcome-container.svg \
+  qt/elysium_royale/res/img/bg-welcome-container@2x.png \
+  qt/elysium_royale/res/img/bg-welcome-container@3x.png \
+  qt/elysium_royale/res/img/ic-check-staking-off.svg \
+  qt/elysium_royale/res/img/ic-nav-master-hover.svg \
+  qt/elysium_royale/res/img/ic-watch-password.svg \
+  qt/elysium_royale/res/img/bg-welcome.jpg \
+  qt/elysium_royale/res/img/bg-welcome.svg \
+  qt/elysium_royale/res/img/bg-welcome@2x.jpg \
+  qt/elysium_royale/res/img/bg-welcome@3x.jpg \
+  qt/elysium_royale/res/img/bg-welcome.png \
+  qt/elysium_royale/res/img/ic-check-staking.svg \
+  qt/elysium_royale/res/img/ic-check-top-masternode.png \
+  qt/elysium_royale/res/img/ic-check-top-config.png \
+  qt/elysium_royale/res/img/ic-nav-master.svg \
+  qt/elysium_royale/res/img/img-dashboard-banner.jpg \
+  qt/elysium_royale/res/img/btn-radio-active.svg \
+  qt/elysium_royale/res/img/ic-check-sync-off.svg \
+  qt/elysium_royale/res/img/ic-nav-privacy-active.svg \
+  qt/elysium_royale/res/img/img-empty-contacts.svg \
+  qt/elysium_royale/res/img/btn-radio-off.svg \
+  qt/elysium_royale/res/img/ic-check-sync.png \
+  qt/elysium_royale/res/img/ic-nav-privacy-hover.svg \
+  qt/elysium_royale/res/img/img-empty-dark-contacts.svg \
+  qt/elysium_royale/res/img/ic-contact-arrow-down.svg \
+  qt/elysium_royale/res/img/ic-contact-arrow-down-white.svg \
+  qt/elysium_royale/res/img/ic-check-sync.svg \
+  qt/elysium_royale/res/img/ic-check-faq.svg \
+  qt/elysium_royale/res/img/ic-nav-privacy.svg \
+  qt/elysium_royale/res/img/img-empty-dark-error.svg \
+  qt/elysium_royale/res/img/ic-add-label.svg \
+  qt/elysium_royale/res/img/ic-pending.svg \
+  qt/elysium_royale/res/img/ic-check-theme-dark.svg \
+  qt/elysium_royale/res/img/ic-nav-receive-active.svg \
+  qt/elysium_royale/res/img/img-empty-dark-masternode.svg \
+  qt/elysium_royale/res/img/ic-add-liliac.svg \
+  qt/elysium_royale/res/img/ic-check-theme-light.svg \
+  qt/elysium_royale/res/img/ic-nav-receive-hover.svg \
+  qt/elysium_royale/res/img/img-empty-dark-multisend.svg \
+  qt/elysium_royale/res/img/ic-add-purple.svg \
+  qt/elysium_royale/res/img/ic-check-white.svg \
+  qt/elysium_royale/res/img/ic-nav-receive.svg \
+  qt/elysium_royale/res/img/img-empty-dark-peers.svg \
+  qt/elysium_royale/res/img/ic-add.svg \
+  qt/elysium_royale/res/img/ic-check.svg \
+  qt/elysium_royale/res/img/ic-nav-send-active.svg \
+  qt/elysium_royale/res/img/img-empty-dark-staking-off.svg \
+  qt/elysium_royale/res/img/img-empty-dark-staking-on.svg \
+  qt/elysium_royale/res/img/ic-address-book-grey.svg \
+  qt/elysium_royale/res/img/ic-chevron-left.svg \
+  qt/elysium_royale/res/img/ic-nav-send-hover.svg \
+  qt/elysium_royale/res/img/img-empty-dark-transactions.svg \
+  qt/elysium_royale/res/img/ic-address-book-white.svg \
+  qt/elysium_royale/res/img/ic-chevron-right.svg \
+  qt/elysium_royale/res/img/ic-chevron-right-liliac.svg \
+  qt/elysium_royale/res/img/ic-nav-send.svg \
+  qt/elysium_royale/res/img/img-empty-error.svg \
+  qt/elysium_royale/res/img/ic-address-book.svg \
+  qt/elysium_royale/res/img/ic-clear-liliac.svg \
+  qt/elysium_royale/res/img/ic-nav-settings-active.svg \
+  qt/elysium_royale/res/img/img-empty-masternode.svg \
+  qt/elysium_royale/res/img/ic-address-send-white.svg \
+  qt/elysium_royale/res/img/ic-clear-purple.svg \
+  qt/elysium_royale/res/img/ic-nav-settings-hover.svg \
+  qt/elysium_royale/res/img/img-empty-multisend.svg \
+  qt/elysium_royale/res/img/ic-address-send.svg \
+  qt/elysium_royale/res/img/ic-close-white.svg \
+  qt/elysium_royale/res/img/ic-nav-settings.svg \
+  qt/elysium_royale/res/img/img-empty-peers.svg \
+  qt/elysium_royale/res/img/img-empty-privacy.svg \
+  qt/elysium_royale/res/img/img-empty-privacy-dark.svg \
+  qt/elysium_royale/res/img/ic-arrow-drop-down-white.svg \
+  qt/elysium_royale/res/img/ic-close.svg \
+  qt/elysium_royale/res/img/ic-radio-liliac-on.svg \
+  qt/elysium_royale/res/img/img-empty-staking-off.svg \
+  qt/elysium_royale/res/img/ic-arrow-drop-down.svg \
+  qt/elysium_royale/res/img/ic-coin-royal.svg \
+  qt/elysium_royale/res/img/ic-receive-off.svg \
+  qt/elysium_royale/res/img/img-empty-staking-on.svg \
+  qt/elysium_royale/res/img/ic-arrow-drop-up-white.svg \
+  qt/elysium_royale/res/img/ic-coin-zroyal.png \
+  qt/elysium_royale/res/img/ic-receive-on.svg \
+  qt/elysium_royale/res/img/img-empty-transactions.svg \
+  qt/elysium_royale/res/img/ic-arrow-drop-up.svg \
+  qt/elysium_royale/res/img/ic-coin-zroyal.svg \
+  qt/elysium_royale/res/img/ic-received.svg \
+  qt/elysium_royale/res/img/img-logo-elysium_royale.png \
+  qt/elysium_royale/res/img/ic-arrow-drop-white-down.svg \
+  qt/elysium_royale/res/img/ic-combo-box.svg \
+  qt/elysium_royale/res/img/ic-send.svg \
+  qt/elysium_royale/res/img/img-logo-elysium_royale@2x.png \
+  qt/elysium_royale/res/img/ic-arrow-purple-down.svg \
+  qt/elysium_royale/res/img/ic-connect.svg \
+  qt/elysium_royale/res/img/ic-submenu-lock.svg \
+  qt/elysium_royale/res/img/img-logo-elysium_royale@3x.png \
+  qt/elysium_royale/res/img/img-logo-elysium_royale.svg \
+  qt/elysium_royale/res/img/ic-arrow-right-white.svg \
+  qt/elysium_royale/res/img/ic-arrow-left-white.svg \
+  qt/elysium_royale/res/img/ic-arrow-left.svg \
+  qt/elysium_royale/res/img/ic-copy-liliac.svg \
+  qt/elysium_royale/res/img/ic-submenu-staking.svg \
+  qt/elysium_royale/res/img/img-nav-logo-elysium_royale.png \
+  qt/elysium_royale/res/img/ic-arrow-right.svg \
+  qt/elysium_royale/res/img/ic-copy.svg \
+  qt/elysium_royale/res/img/ic-copy-big.svg \
+  qt/elysium_royale/res/img/ic-copy-big-white.svg \
+  qt/elysium_royale/res/img/ic-submenu-unlock.svg \
+  qt/elysium_royale/res/img/img-nav-logo.png \
+  qt/elysium_royale/res/img/ic-arrow-white-left.svg \
+  qt/elysium_royale/res/img/ic-exit.svg \
+  qt/elysium_royale/res/img/ic-switch-liliac-on.svg \
+  qt/elysium_royale/res/img/img-nav-logo.svg \
+  qt/elysium_royale/res/img/ic-arrow-white-right.svg \
+  qt/elysium_royale/res/img/ic-expand.svg \
+  qt/elysium_royale/res/img/ic-switch-off.svg \
+  qt/elysium_royale/res/img/img-qr-test-big.png \
+  qt/elysium_royale/res/img/ic-check-active.svg \
+  qt/elysium_royale/res/img/ic-folder.svg \
+  qt/elysium_royale/res/img/ic-switch-on.svg \
+  qt/elysium_royale/res/img/img-qr-test.png \
+  qt/elysium_royale/res/img/ic-check-box.svg \
+  qt/elysium_royale/res/img/ic-check-box-light.svg \
+  qt/elysium_royale/res/img/ic-check-box-dark-active.svg \
+  qt/elysium_royale/res/img/ic-check-box-indeterminate.svg \
+  qt/elysium_royale/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/elysium_royale/res/img/ic-label-liliac.svg \
+  qt/elysium_royale/res/img/ic-transaction-warning.svg \
+  qt/elysium_royale/res/img/ic-transaction-mint.svg \
+  qt/elysium_royale/res/img/ic-transaction-mint-inactive.svg \
+  qt/elysium_royale/res/img/ic-check-cold-staking.svg \
+  qt/elysium_royale/res/img/ic-check-cold-staking-off.svg \
+  qt/elysium_royale/res/img/ic-check-cold-staking-enabled.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-cs-contract-inactive.svg \
+  qt/elysium_royale/res/img/img-qr.svg \
+  qt/elysium_royale/res/img/ic-check-connect-off.svg \
+  qt/elysium_royale/res/img/ic-check-tor-off.svg \
+  qt/elysium_royale/res/img/ic-check-tor.svg \
+  qt/elysium_royale/res/img/ic-label.svg \
+  qt/elysium_royale/res/img/ic-transaction-received.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-received.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-warning.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-mint.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/elysium_royale/res/img/ic-transaction-received-inactive.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/elysium_royale/res/img/img-welcome-step1.png \
+  qt/elysium_royale/res/img/ic-check-connect.svg \
+  qt/elysium_royale/res/img/ic-menu-hover.svg \
+  qt/elysium_royale/res/img/ic-transaction-sent.svg \
+  qt/elysium_royale/res/img/ic-transaction-sent-inactive.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-sent.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/elysium_royale/res/img/img-welcome-step2.png \
+  qt/elysium_royale/res/img/ic-check-dark.svg \
+  qt/elysium_royale/res/img/ic-mint.svg \
+  qt/elysium_royale/res/img/ic-transaction-staked.svg \
+  qt/elysium_royale/res/img/ic-transaction-staked-inactive.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-staked.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/elysium_royale/res/img/img-welcome-step3.png \
+  qt/elysium_royale/res/img/ic-check-liliac-on.svg \
+  qt/elysium_royale/res/img/ic-nav-address-active.svg \
+  qt/elysium_royale/res/img/ic-unlock-staking.svg \
+  qt/elysium_royale/res/img/img-welcome-step4.png \
+  qt/elysium_royale/res/img/ic-check-locked-off.svg \
+  qt/elysium_royale/res/img/ic-nav-address-hover.svg \
+  qt/elysium_royale/res/img/ic-update-liliac.svg \
+  qt/elysium_royale/res/img/ic-arrow-drop-down-purple.svg \
+  qt/elysium_royale/res/img/ic-arrow-drop-up-purple.svg \
+  qt/elysium_royale/res/img/ic-check-liliac-indeterminate.svg \
+  qt/elysium_royale/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/elysium_royale/res/img/ic-transaction-stake-delegated.svg \
+  qt/elysium_royale/res/img/ic-transaction-stake-delegated-inactive.svg \
+  qt/elysium_royale/res/img/ic-transaction-stake-hot.svg \
+  qt/elysium_royale/res/img/ic-transaction-stake-hot-inactive.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-stake-hot-inactive.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/elysium_royale/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
+  qt/elysium_royale/res/img/ic-transaction-cs-contract.svg \
+  qt/elysium_royale/res/img/ic-transaction-cs-contract-inactive.svg \
+  qt/elysium_royale/res/img/ic-check-box-indeterminate.svg \
+  qt/elysium_royale/res/img/ic-information.svg \
+  qt/elysium_royale/res/img/ic-information-hover.svg \
+  qt/elysium_royale/res/img/ani-loading-dark.gif \
+  qt/elysium_royale/res/img/ani-loading.gif \
+  qt/elysium_royale/res/img/ic-check-vote.svg \
+  qt/elysium_royale/res/img/ic-check-vote-active.svg \
+  qt/elysium_royale/res/img/ic-check-vote-dark.svg \
+  qt/elysium_royale/res/img/ic-check-vote-active-dark.svg \
+  qt/elysium_royale/res/img/ic-check-block.svg \
+  qt/elysium_royale/res/img/ic-filter.svg \
+  qt/elysium_royale/res/img/ic-link.svg \
+  qt/elysium_royale/res/img/ic-nav-governance.svg \
+  qt/elysium_royale/res/img/ic-nav-governance-active.svg \
+  qt/elysium_royale/res/img/ic-nav-governance-hover.svg \
+  qt/elysium_royale/res/img/ic-time.svg \
+  qt/elysium_royale/res/img/ic-link-hover.svg \
+  qt/elysium_royale/res/img/img-empty-governance.svg \
+  qt/elysium_royale/res/img/img-empty-dark-governance.svg
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/elysium_royale/elysium_royalegui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/rpcexecutor.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentserver.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/elysium_royale/loadingdialog.cpp \
+  qt/elysium_royale/pwidget.cpp \
+  qt/elysium_royale/focuseddialog.cpp \
+  qt/elysium_royale/guitransactionsutils.cpp \
+  qt/elysium_royale/snackbar.cpp \
+  qt/elysium_royale/navmenuwidget.cpp \
+  qt/elysium_royale/lockunlock.cpp \
+  qt/elysium_royale/receivedialog.cpp \
+  qt/elysium_royale/furabstractlistitemdelegate.cpp \
+  qt/elysium_royale/txviewholder.cpp \
+  qt/elysium_royale/qtutils.cpp \
+  qt/elysium_royale/expandablebutton.cpp \
+  qt/elysium_royale/balancebubble.cpp \
+  qt/elysium_royale/topbar.cpp \
+  qt/elysium_royale/txrow.cpp \
+  qt/elysium_royale/addressholder.cpp \
+  qt/elysium_royale/addressfilterproxymodel.cpp \
+  qt/elysium_royale/dashboardwidget.cpp \
+  qt/elysium_royale/addresslabelrow.cpp \
+  qt/elysium_royale/contactdropdownrow.cpp \
+  qt/elysium_royale/contactsdropdown.cpp \
+  qt/elysium_royale/optionbutton.cpp \
+  qt/elysium_royale/mninfodialog.cpp \
+  qt/elysium_royale/coldstakingmodel.cpp \
+  qt/elysium_royale/mnmodel.cpp \
+  qt/elysium_royale/masternodewizarddialog.cpp \
+  qt/elysium_royale/mnrow.cpp \
+  qt/elysium_royale/masternodeswidget.cpp \
+  qt/elysium_royale/myaddressrow.cpp \
+  qt/elysium_royale/csrow.cpp \
+  qt/elysium_royale/sendchangeaddressdialog.cpp \
+  qt/elysium_royale/sendconfirmdialog.cpp \
+  qt/elysium_royale/sendcustomfeedialog.cpp \
+  qt/elysium_royale/sendmemodialog.cpp \
+  qt/elysium_royale/sendmultirow.cpp \
+  qt/elysium_royale/send.cpp \
+  qt/elysium_royale/addnewcontactdialog.cpp \
+  qt/elysium_royale/requestdialog.cpp \
+  qt/elysium_royale/receivewidget.cpp \
+  qt/elysium_royale/tooltipmenu.cpp \
+  qt/elysium_royale/addresseswidget.cpp \
+  qt/elysium_royale/defaultdialog.cpp \
+  qt/elysium_royale/coldstakingwidget.cpp \
+  qt/elysium_royale/governancemodel.cpp \
+  qt/elysium_royale/proposalcard.cpp \
+  qt/elysium_royale/mnselectiondialog.cpp \
+  qt/elysium_royale/votedialog.cpp \
+  qt/elysium_royale/createproposaldialog.cpp \
+  qt/elysium_royale/proposalinfodialog.cpp \
+  qt/elysium_royale/governancewidget.cpp \
+  qt/elysium_royale/settings/settingsbackupwallet.cpp \
+  qt/elysium_royale/settings/settingsexportcsv.cpp \
+  qt/elysium_royale/settings/settingsbittoolwidget.cpp \
+  qt/elysium_royale/settings/settingsconsolewidget.cpp \
+  qt/elysium_royale/settings/settingsdisplayoptionswidget.cpp \
+  qt/elysium_royale/settings/settingsfaqwidget.cpp \
+  qt/elysium_royale/settings/settingsinformationwidget.cpp \
+  qt/elysium_royale/settings/settingsmainoptionswidget.cpp \
+  qt/elysium_royale/settings/settingssignmessagewidgets.cpp \
+  qt/elysium_royale/settings/settingswalletoptionswidget.cpp \
+  qt/elysium_royale/settings/settingswalletrepairwidget.cpp \
+  qt/elysium_royale/settings/settingswidget.cpp \
+  qt/elysium_royale/welcomecontentwidget.cpp \
+  qt/elysium_royale/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/elysium_royale/res/css/style_dark.css \
+  qt/elysium_royale/res/css/style_light.css
+
+BITCOIN_RC = qt/res/elysium_royale-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_elysium_royale_qt_OBJECTS) : | $(QT_MOC)
+
+# elysium_royale-qt binary #
+qt_elysium_royale_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_elysium_royale_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_elysium_royale_qt_SOURCES = qt/elysium_royale.cpp
+if TARGET_DARWIN
+  qt_elysium_royale_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_elysium_royale_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_elysium_royale_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_elysium_royale_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_elysium_royale_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_elysium_royale_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBSAPLING) $(LIBRUSTZCASH) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(BLS_LIBS)
+qt_elysium_royale_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_elysium_royale_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/elysium_royalestrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/elysium_royalestrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/elysium_royale.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/elysium_royale_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name elysium_royale_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name elysium_royale $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/elysium_royale/*.gcda qt/elysium_royale/*.gcno qt/elysium_royale/settings/*.gcda qt/elysium_royale/settings/*.gcno qt/temp_elysium_royale_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+elysium_royale_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_elysium_royale_qt_OBJECTS) qt/elysium_royale-qt$(EXEEXT) $(LIBBITCOINQT)
+
+elysium_royale_qt : qt/elysium_royale-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

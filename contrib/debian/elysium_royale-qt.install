@@ -1,0 +1,6 @@
+usr/local/bin/elysium_royale-qt usr/bin
+share/pixmaps/elysium_royale32.xpm usr/share/pixmaps
+share/pixmaps/elysium_royale16.xpm usr/share/pixmaps
+share/pixmaps/elysium_royale128.png usr/share/pixmaps
+debian/elysium_royale-qt.desktop usr/share/applications
+debian/elysium_royale-qt.protocol usr/share/kde4/services/

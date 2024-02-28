@@ -1,0 +1,15 @@
+QT_TS = \
+  qt/locale/elysium_royale_de.ts \
+  qt/locale/elysium_royale_en.ts \
+  qt/locale/elysium_royale_en_US.ts \
+  qt/locale/elysium_royale_es.ts \
+  qt/locale/elysium_royale_es_ES.ts \
+  qt/locale/elysium_royale_fr_FR.ts \
+  qt/locale/elysium_royale_hr_HR.ts \
+  qt/locale/elysium_royale_it.ts \
+  qt/locale/elysium_royale_ko_KR.ts \
+  qt/locale/elysium_royale_nl.ts \
+  qt/locale/elysium_royale_pl.ts \
+  qt/locale/elysium_royale_ru.ts \
+  qt/locale/elysium_royale_tr.ts \
+  qt/locale/elysium_royale_zh_CN.ts
