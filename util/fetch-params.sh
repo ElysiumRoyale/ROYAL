@@ -13,7 +13,7 @@ if [ -n "${1:-}" ]; then
     PARAMS_DIR="$1"
 else
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        PARAMS_DIR="$HOME/Library/Application Support/Elysium_RoyaleParams"
+        PARAMS_DIR="$HOME/Library/Application Support/ElysiumRoyaleParams"
     else
         PARAMS_DIR="$HOME/.elysium_royale-params"
     fi

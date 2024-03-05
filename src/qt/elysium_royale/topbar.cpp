@@ -483,6 +483,7 @@ void TopBar::setNumBlocks(int count)
             progressBar->setRange(0, 100);
             progressBar->setValue(100);
             Q_EMIT tierTwoSynced(true);
+            refreshStatus();
             return;
         } else {
 
@@ -631,13 +632,15 @@ void TopBar::refreshStatus()
     updateStyle(ui->pushButtonLock);
 
     // Collateral
-    ui->labelCollateralRoyal->setText(GUIUtil::formatBalance(CMasternode::GetMNCollateral(chainActive.Tip()->nHeight) * COIN, nDisplayUnit));
+    if (g_tiertwo_sync_state.IsSynced()) {
+        ui->labelCollateralRoyal->setText(GUIUtil::formatBalance(CMasternode::GetMNCollateral(chainActive.Tip()->nHeight) * COIN, nDisplayUnit));
 
-    CAmount Blockvalue = GetBlockValue(chainActive.Tip()->nHeight);
-    CAmount MNReward = Blockvalue * 0.90;
+        CAmount Blockvalue = GetBlockValue(chainActive.Tip()->nHeight);
+        CAmount MNReward = Blockvalue * 0.90;
 
-    ui->labelMNRewardvalue->setText(GUIUtil::formatBalance(MNReward));
-    ui->labelStakingRewardvalue->setText(GUIUtil::formatBalance(Blockvalue - MNReward));
+        ui->labelMNRewardvalue->setText(GUIUtil::formatBalance(MNReward));
+        ui->labelStakingRewardvalue->setText(GUIUtil::formatBalance(Blockvalue - MNReward));
+    }
 }
 
 void TopBar::updateDisplayUnit()
@@ -671,9 +674,6 @@ void TopBar::updateBalances(const interfaces::WalletBalances& newBalance)
     ui->labelPendingRoyal->setText(GUIUtil::formatBalance(newBalance.unconfirmed_balance, nDisplayUnit));
     ui->labelImmatureRoyal->setText(GUIUtil::formatBalance(newBalance.immature_balance, nDisplayUnit));
     ui->labelLockedRoyal->setText(GUIUtil::formatBalance(nLockedBalance, nDisplayUnit));
-
-    // Collateral
-    ui->labelCollateralRoyal->setText(GUIUtil::formatBalance(CMasternode::GetMNCollateral(chainActive.Tip()->nHeight) * COIN, nDisplayUnit));
 }
 
 void TopBar::resizeEvent(QResizeEvent *event)

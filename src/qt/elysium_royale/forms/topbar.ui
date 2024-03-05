@@ -496,7 +496,7 @@
              <item>
               <widget class="QLabel" name="labelCollateralRoyal">
                <property name="text">
-                <string notr="true">-- Royal</string>
+                <string notr="true">-- ROYAL</string>
                </property>
               </widget>
              </item>
@@ -527,7 +527,7 @@
               <item>
                <widget class="QLabel" name="labelMNRewardvalue">
                 <property name="text">
-                 <string>-- Royal</string>
+                 <string>-- ROYAL</string>
                 </property>
                </widget>
               </item>
@@ -541,7 +541,7 @@
               <item>
                <widget class="QLabel" name="labelStakingRewardvalue">
                 <property name="text">
-                 <string notr="true">-- Royal</string>
+                 <string notr="true">-- ROYAL</string>
                 </property>
                </widget>
               </item>
