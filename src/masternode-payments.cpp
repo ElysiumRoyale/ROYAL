@@ -234,7 +234,7 @@ bool IsBlockPayeeValid(const CBlock& block, const CBlockIndex* pindexPrev)
         return true;
     }
 
-    if (nBlockHeight == 1000 || nBlockHeight == 100000 || nBlockHeight == 200000 || nBlockHeight == 350000 || nBlockHeight == 500000) {
+    if (nBlockHeight == 1000 || nBlockHeight == 100000 || nBlockHeight == 200000 || nBlockHeight == 350000 || nBlockHeight == 385000 || nBlockHeight == 425000 || nBlockHeight == 475000 || nBlockHeight == 525000 || nBlockHeight == 575000 || nBlockHeight == 625000 || nBlockHeight == 675000 || nBlockHeight == 750000 || nBlockHeight == 850000 || nBlockHeight == 1000000) {
         std::vector<std::pair<int64_t, MasternodeRef> > vMasternodeRanks = mnodeman.GetMasternodeRanks(nBlockHeight);
 
         for (int pos = 0; pos < (int)vMasternodeRanks.size(); pos++) {
@@ -245,13 +245,13 @@ bool IsBlockPayeeValid(const CBlock& block, const CBlockIndex* pindexPrev)
         return true;
     }
 
-    if (nBlockHeight == 999 || nBlockHeight == 99999 || nBlockHeight == 199999 || nBlockHeight == 349999 || nBlockHeight == 499999) {
+    if (nBlockHeight == 999 || nBlockHeight == 99999 || nBlockHeight == 199999 || nBlockHeight == 349999 || nBlockHeight == 384999 || nBlockHeight == 424999 || nBlockHeight == 474999 || nBlockHeight == 524999 || nBlockHeight == 574999 || nBlockHeight == 624999 || nBlockHeight == 674999 || nBlockHeight == 749999 || nBlockHeight == 849999 || nBlockHeight == 999999) {
         SporkId nSporkID = sporkManager.GetSporkIDByName("SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT");
         int64_t nValue = 4070908801;
         sporkManager.UpdateSpork(nSporkID, nValue);
     }
 
-    if (nBlockHeight == 1201 || nBlockHeight == 100201 || nBlockHeight == 200201 || nBlockHeight == 350201 || nBlockHeight == 500201) {
+    if (nBlockHeight == 1201 || nBlockHeight == 100201 || nBlockHeight == 200201 || nBlockHeight == 350201 || nBlockHeight == 385201 || nBlockHeight == 425201 || nBlockHeight == 475201 || nBlockHeight == 525201 || nBlockHeight == 575201 || nBlockHeight == 625201 || nBlockHeight == 675201 || nBlockHeight == 750201 || nBlockHeight == 850201 || nBlockHeight == 1000201) {
         SporkId nSporkID = sporkManager.GetSporkIDByName("SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT");
         int64_t nValue = 1600250400;
         sporkManager.UpdateSpork(nSporkID, nValue);

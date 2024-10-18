@@ -248,10 +248,28 @@ struct Params {
             nMNCollateral = 3000;
         } else if (nHeight > 200000 && nHeight <= 350000) {
             nMNCollateral = 3500;
-        } else if (nHeight > 350000 && nHeight <= 500000) {
-            nMNCollateral = 4000;
+        } else if (nHeight > 350000 && nHeight <= 385000) {
+            nMNCollateral = 150000;
+        } else if (nHeight > 385000 && nHeight <= 425000) {
+            nMNCollateral = 180000;
+        } else if (nHeight > 425000 && nHeight <= 475000) {
+            nMNCollateral = 225000;
+        } else if (nHeight > 475000 && nHeight <= 525000) {
+            nMNCollateral = 280000;
+        } else if (nHeight > 525000 && nHeight <= 575000) {
+            nMNCollateral = 350000;
+        } else if (nHeight > 575000 && nHeight <= 625000) {
+            nMNCollateral = 500000;
+        } else if (nHeight > 625000 && nHeight <= 675000) {
+            nMNCollateral = 750000;
+        } else if (nHeight > 675000 && nHeight <= 750000) {
+            nMNCollateral = 1000000;
+        } else if (nHeight > 750000 && nHeight <= 850000) {
+            nMNCollateral = 1500000;
+        } else if (nHeight > 850000 && nHeight <= 1000000) {
+            nMNCollateral = 2500000;
         } else {
-            nMNCollateral = 5000;
+            nMNCollateral = 5000000;
         }
 
         return nMNCollateral * COIN;

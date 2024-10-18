@@ -826,10 +826,28 @@ CAmount GetBlockValue(int nHeight)
         return 4.75 * COIN;
     } else if (nHeight > 200000 && nHeight <= 350000) {
         return 5.50 * COIN;
-    } else if (nHeight > 350000 && nHeight <= 500000) {
-        return 6.25 * COIN;
-    }  else {
-        return 8 * COIN;
+    } else if (nHeight > 350000 && nHeight <= 385000) {
+        return 30 * COIN;
+    } else if (nHeight > 385000 && nHeight <= 425000) {
+        return 40 * COIN;
+    } else if (nHeight > 425000 && nHeight <= 475000) {
+        return 60 * COIN;
+    } else if (nHeight > 475000 && nHeight <= 525000) {
+        return 75 * COIN;
+    } else if (nHeight > 525000 && nHeight <= 575000) {
+        return 100 * COIN;
+    } else if (nHeight > 575000 && nHeight <= 625000) {
+        return 150 * COIN;
+    } else if (nHeight > 625000 && nHeight <= 675000) {
+        return 200 * COIN;
+    } else if (nHeight > 675000 && nHeight <= 750000) {
+        return 275 * COIN;
+    } else if (nHeight > 750000 && nHeight <= 850000) {
+        return 350 * COIN;
+    } else if (nHeight > 850000 && nHeight <= 1000000) {
+        return 650 * COIN;
+    } else {
+        return 1000 * COIN;
     }
 }
 
@@ -842,8 +860,10 @@ int64_t GetMasternodePayment(int nHeight)
 
     if (nHeight > 0 && nHeight <= nLast) {
         ret = 0;
-    } else {
+    } else if (nHeight <= 350000) {
         ret = blockValue * 0.90; // 90%
+    } else {
+        ret = blockValue; // 100%
     }
     return ret;
 }

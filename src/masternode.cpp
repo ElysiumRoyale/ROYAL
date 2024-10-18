@@ -345,10 +345,28 @@ CAmount CMasternode::GetMNCollateral(int nHeight)
         return 3000;
     } else if (nHeight > 200000 && nHeight <= 350000) {
         return 3500;
-    } else if (nHeight > 350000 && nHeight <= 500000) {
-        return 4000;
+    } else if (nHeight > 350000 && nHeight <= 385000) {
+        return 150000;
+    } else if (nHeight > 385000 && nHeight <= 425000) {
+        return 180000;
+    } else if (nHeight > 425000 && nHeight <= 475000) {
+        return 225000;
+    } else if (nHeight > 475000 && nHeight <= 525000) {
+        return 280000;
+    } else if (nHeight > 525000 && nHeight <= 575000) {
+        return 350000;
+    } else if (nHeight > 575000 && nHeight <= 625000) {
+        return 500000;
+    } else if (nHeight > 625000 && nHeight <= 675000) {
+        return 750000;
+    } else if (nHeight > 675000 && nHeight <= 750000) {
+        return 1000000;
+    } else if (nHeight > 750000 && nHeight <= 850000) {
+        return 1500000;
+    } else if (nHeight > 850000 && nHeight <= 1000000) {
+        return 2500000;
     } else {
-        return 5000;
+        return 5000000;
     }
 
     return 0;
